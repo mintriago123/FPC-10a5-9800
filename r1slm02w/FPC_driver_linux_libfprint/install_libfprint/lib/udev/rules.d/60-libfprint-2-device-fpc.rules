@@ -1,0 +1,3 @@
+# FPC Sensors
+SUBSYSTEM=="usb", ATTRS{idVendor}=="10a5", ATTRS{idProduct}=="9800", ATTRS{dev}=="*", TEST=="power/control", ATTR{power/control}="auto"
+SUBSYSTEM=="usb", ATTRS{idVendor}=="10a5", ATTRS{idProduct}=="9800", ENV{LIBFPRINT_DRIVER}="FPC Sensors"
