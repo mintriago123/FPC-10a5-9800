@@ -1,0 +1,58 @@
+MIT License
+
+Copyright (c) 2024-2025 Contributors of FPC-10a5-9800-Fedora-Nobara
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+---
+
+## Additional Notes / Notas Adicionales
+
+### Third-Party Drivers / Drivers de Terceros
+
+This repository includes modified installation scripts for FPC fingerprint reader drivers originally provided by Lenovo. The original drivers and their associated licenses remain the property of their respective copyright holders:
+
+- **Original FPC Drivers:** Copyright © Lenovo
+- **Original License:** See license files included in the r1slm02w/ directory
+- **Source:** https://pcsupport.lenovo.com/
+
+Este repositorio incluye scripts de instalación modificados para drivers de lector de huellas FPC originalmente proporcionados por Lenovo. Los drivers originales y sus licencias asociadas siguen siendo propiedad de sus respectivos titulares de derechos de autor:
+
+- **Drivers FPC Originales:** Copyright © Lenovo  
+- **Licencia Original:** Ver archivos de licencia incluidos en el directorio r1slm02w/
+- **Fuente:** https://pcsupport.lenovo.com/
+
+### Script Modifications / Modificaciones de Scripts
+
+The modifications to the installation scripts (detecting Fedora, adjusting paths, etc.) are provided under the MIT License above.
+
+Las modificaciones a los scripts de instalación (detección de Fedora, ajuste de rutas, etc.) se proporcionan bajo la Licencia MIT anterior.
+
+### Documentation / Documentación
+
+All documentation, guides, and additional scripts created for this repository are licensed under the MIT License.
+
+Toda la documentación, guías y scripts adicionales creados para este repositorio están licenciados bajo la Licencia MIT.
+
+### Credits / Créditos
+
+- **Original Tutorial and Script Modifications for Fedora:** Lukáš Maňák
+- **Ubuntu PPA:** libfprint-tod1-group
+- **Arch Linux AUR Package:** Community contributors
+- **Documentation and Multi-distro Support:** Repository contributors
