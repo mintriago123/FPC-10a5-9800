@@ -27,6 +27,11 @@ All notable changes to this project will be documented in this file.
 - **Diagramas de estructura actualizados / Updated structure diagrams:**
   - Ahora reflejan la estructura real del repositorio (incluyen subcarpeta `r1slm02w/`)
   - Now reflect the actual repository structure (include `r1slm02w/` subfolder)
+- **"Fedora/Nobara" renombrado a "Fedora y derivadas" / "Fedora/Nobara" renamed to "Fedora & Derivatives":**
+  - Actualizado en README, `docs/INSTALL_FEDORA.md`, badges y tablas de distribuciones
+  - Updated in README, `docs/INSTALL_FEDORA.md`, badges and distribution tables
+  - Agregado Ultramarine como distribución testeada / Added Ultramarine as tested distribution
+  - Nobara y Ultramarine ahora aparecen como filas independientes en la tabla de distribuciones / Nobara and Ultramarine now appear as separate rows in the distributions table
 
 ## [2.0.0] - 2025-11-26
 
