@@ -33,7 +33,7 @@ Or use this repository which already contains the modified scripts in `drivers/m
 
 #### 4. Install First Driver Component
 ```bash
-cd drivers/modified/fedora-nobara/FPC_driver_linux_27.26.23.39/install_fpc
+cd drivers/modified/fedora-nobara/r1slm02w/FPC_driver_linux_27.26.23.39/install_fpc
 chmod +x install.sh
 sudo ./install.sh
 ```
@@ -206,7 +206,7 @@ O usa este repositorio que ya contiene los scripts modificados en `drivers/modif
 
 #### 4. Instalar el Primer Componente del Controlador
 ```bash
-cd drivers/modified/fedora-nobara/FPC_driver_linux_27.26.23.39/install_fpc
+cd drivers/modified/fedora-nobara/r1slm02w/FPC_driver_linux_27.26.23.39/install_fpc
 chmod +x install.sh
 sudo ./install.sh
 ```

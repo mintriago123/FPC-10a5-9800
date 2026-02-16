@@ -39,16 +39,6 @@ If you see "10a5:9800" in the output, this repository is for you!
 
 Select your distribution:
 
-#### 🚀 Quick Installation
-
-```bash
-# Ubuntu - Automatic script
-chmod +x drivers/install-ubuntu.sh && ./drivers/install-ubuntu.sh
-
-# Arch Linux - Automatic script
-chmod +x drivers/install-arch.sh && ./drivers/install-arch.sh
-```
-
 #### 🎩 Fedora / Nobara
 **[📖 Complete Guide](docs/INSTALL_FEDORA.md)**
 
@@ -56,7 +46,7 @@ Method using modified Lenovo drivers with automatic system detection.
 
 **Manual installation:**
 ```bash
-cd drivers/modified/fedora-nobara/FPC_driver_linux_27.26.23.39/install_fpc
+cd drivers/modified/fedora-nobara/r1slm02w/FPC_driver_linux_27.26.23.39/install_fpc
 chmod +x install.sh && sudo ./install.sh
 
 cd ../../FPC_driver_linux_libfprint/install_libfprint
@@ -64,7 +54,7 @@ chmod +x install.sh && sudo ./install.sh
 ```
 
 #### 🟠 Ubuntu
-**[📖 Complete Guide](docs/INSTALL_UBUNTU.md)** | **[⚡ Automatic Script](drivers/install-ubuntu.sh)**
+**[📖 Complete Guide](docs/INSTALL_UBUNTU.md)**
 
 Use the official libfprint-tod1-group PPA (only working method).
 
@@ -107,7 +97,7 @@ sudo reboot
 ```
 
 #### 🔵 Arch Linux
-**[📖 Complete Guide](docs/INSTALL_ARCH.md)** | **[⚡ Automatic Script](drivers/install-arch.sh)**
+**[📖 Complete Guide](docs/INSTALL_ARCH.md)**
 
 Install from AUR:
 
@@ -120,7 +110,7 @@ paru -S libfprint-fpcmoh-git fprintd
 ### 📁 Repository Structure
 
 ```
-FPC-10a5-9800-Fedora-Nobara/
+FPC-10a5-9800/
 ├── docs/                          # 📚 Detailed documentation
 │   ├── INSTALL_FEDORA.md         # Guide for Fedora/Nobara
 │   ├── INSTALL_UBUNTU.md         # Guide for Ubuntu
@@ -131,10 +121,9 @@ FPC-10a5-9800-Fedora-Nobara/
 │   │   └── r1slm02w.zip          # Original Lenovo driver (for Deepin/manual Ubuntu)
 │   └── modified/                 # Modified drivers
 │       └── fedora-nobara/        # Scripts adapted for Fedora/Nobara
-│           ├── FPC_driver_linux_27.26.23.39/
-│           └── FPC_driver_linux_libfprint/
-│   ├── install-ubuntu.sh         # ⚡ Automatic installation script for Ubuntu
-│   └── install-arch.sh           # ⚡ Automatic installation script for Arch Linux
+│           └── r1slm02w/
+│               ├── FPC_driver_linux_27.26.23.39/
+│               └── FPC_driver_linux_libfprint/
 ├── CHANGELOG.md                   # Change log
 ├── CONTRIBUTING.md                # Contributing guide
 ├── LICENSE                        # MIT License
@@ -280,16 +269,6 @@ Si ves "10a5:9800" en la salida, ¡este repositorio es para ti!
 
 Selecciona tu distribución:
 
-#### 🚀 Instalación Rápida
-
-```bash
-# Ubuntu - Script automático
-chmod +x drivers/install-ubuntu.sh && ./drivers/install-ubuntu.sh
-
-# Arch Linux - Script automático
-chmod +x drivers/install-arch.sh && ./drivers/install-arch.sh
-```
-
 #### 🎩 Fedora / Nobara
 **[📖 Guía Completa](docs/INSTALL_FEDORA.md)**
 
@@ -297,7 +276,7 @@ Método usando drivers modificados de Lenovo con detección automática del sist
 
 **Instalación manual:**
 ```bash
-cd drivers/modified/fedora-nobara/FPC_driver_linux_27.26.23.39/install_fpc
+cd drivers/modified/fedora-nobara/r1slm02w/FPC_driver_linux_27.26.23.39/install_fpc
 chmod +x install.sh && sudo ./install.sh
 
 cd ../../FPC_driver_linux_libfprint/install_libfprint
@@ -305,7 +284,7 @@ chmod +x install.sh && sudo ./install.sh
 ```
 
 #### 🟠 Ubuntu
-**[📖 Guía Completa](docs/INSTALL_UBUNTU.md)** | **[⚡ Script Automático](drivers/install-ubuntu.sh)**
+**[📖 Guía Completa](docs/INSTALL_UBUNTU.md)**
 
 Usa el PPA oficial de libfprint-tod1-group (único método funcional).
 
@@ -348,7 +327,7 @@ sudo reboot
 ```
 
 #### 🔵 Arch Linux
-**[📖 Guía Completa](docs/INSTALL_ARCH.md)** | **[⚡ Script Automático](drivers/install-arch.sh)**
+**[📖 Guía Completa](docs/INSTALL_ARCH.md)**
 
 Instalar desde AUR:
 
@@ -361,7 +340,7 @@ paru -S libfprint-fpcmoh-git fprintd
 ### 📁 Estructura del Repositorio
 
 ```
-FPC-10a5-9800-Fedora-Nobara/
+FPC-10a5-9800/
 ├── docs/                          # 📚 Documentación detallada
 │   ├── INSTALL_FEDORA.md         # Guía para Fedora/Nobara
 │   ├── INSTALL_UBUNTU.md         # Guía para Ubuntu
@@ -372,10 +351,9 @@ FPC-10a5-9800-Fedora-Nobara/
 │   │   └── r1slm02w.zip          # Driver original de Lenovo (para Deepin/Ubuntu manual)
 │   └── modified/                 # Drivers modificados
 │       └── fedora-nobara/        # Scripts adaptados para Fedora/Nobara
-│           ├── FPC_driver_linux_27.26.23.39/
-│           └── FPC_driver_linux_libfprint/
-│   ├── install-ubuntu.sh         # ⚡ Script de instalación automática para Ubuntu
-│   └── install-arch.sh           # ⚡ Script de instalación automática para Arch Linux
+│           └── r1slm02w/
+│               ├── FPC_driver_linux_27.26.23.39/
+│               └── FPC_driver_linux_libfprint/
 ├── CHANGELOG.md                   # Registro de cambios
 ├── CONTRIBUTING.md                # Guía de contribución
 ├── LICENSE                        # Licencia MIT
