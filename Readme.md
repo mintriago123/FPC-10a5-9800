@@ -61,7 +61,7 @@ Use the official libfprint-tod1-group PPA (only working method).
 ```bash
 sudo add-apt-repository ppa:libfprint-tod1-group/ppa
 sudo apt update
-sudo apt install libfprint-2-tod1-fpc fprintd
+sudo apt install libfprint-2-tod1-fpc fprintd libpam-fprintd
 ```
 
 ⚠️ **Note:** Manual Lenovo drivers don't work on Ubuntu. Use only the PPA.
@@ -291,7 +291,7 @@ Usa el PPA oficial de libfprint-tod1-group (único método funcional).
 ```bash
 sudo add-apt-repository ppa:libfprint-tod1-group/ppa
 sudo apt update
-sudo apt install libfprint-2-tod1-fpc fprintd
+sudo apt install libfprint-2-tod1-fpc fprintd libpam-fprintd
 ```
 
 ⚠️ **Nota:** Los drivers manuales de Lenovo no funcionan en Ubuntu. Usa solo el PPA.

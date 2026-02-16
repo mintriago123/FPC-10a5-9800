@@ -30,7 +30,7 @@ sudo apt update
 
 #### 3. Install libfprint-2-tod1-fpc
 ```bash
-sudo apt install libfprint-2-tod1-fpc fprintd
+sudo apt install libfprint-2-tod1-fpc fprintd libpam-fprintd
 ```
 
 This package provides specific support for FPC Touch-on-Display sensors.
@@ -120,7 +120,7 @@ sudo apt update
 
 #### 3. Instalar libfprint-2-tod1-fpc
 ```bash
-sudo apt install libfprint-2-tod1-fpc fprintd
+sudo apt install libfprint-2-tod1-fpc fprintd libpam-fprintd
 ```
 
 Este paquete proporciona soporte específico para los sensores FPC Touch-on-Display.
