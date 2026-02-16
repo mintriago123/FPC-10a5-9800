@@ -41,7 +41,6 @@ temp/
 __pycache__/
 *.py[cod]
 *$py.class
-*.so
 .Python
 
 # Build directories
