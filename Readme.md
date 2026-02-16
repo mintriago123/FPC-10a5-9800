@@ -1,7 +1,7 @@
 # FPC Fingerprint Reader Driver Installation for Linux
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Fedora](https://img.shields.io/badge/Fedora-✓-51A2DA.svg?logo=fedora)](docs/INSTALL_FEDORA.md)
+[![Fedora & Derivatives](https://img.shields.io/badge/Fedora%20%26%20Derivatives-✓-51A2DA.svg?logo=fedora)](docs/INSTALL_FEDORA.md)
 [![Ubuntu](https://img.shields.io/badge/Ubuntu-✓-E95420.svg?logo=ubuntu)](docs/INSTALL_UBUNTU.md)
 [![Arch Linux](https://img.shields.io/badge/Arch%20Linux-✓-1793D1.svg?logo=arch-linux)](docs/INSTALL_ARCH.md)
 [![Contributions Welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg)](CONTRIBUTING.md)
@@ -14,7 +14,7 @@
 
 ### 🔍 Description
 
-This repository provides drivers and instructions for installing the FPC 10a5:9800 fingerprint reader on multiple Linux distributions, including Fedora, Nobara, Ubuntu, and Arch Linux.
+This repository provides drivers and instructions for installing the FPC 10a5:9800 fingerprint reader on multiple Linux distributions, including Fedora and derivatives (Nobara, Ultramarine, etc.), Ubuntu, and Arch Linux.
 
 ### 🖥️ Supported Hardware
 
@@ -39,10 +39,10 @@ If you see "10a5:9800" in the output, this repository is for you!
 
 Select your distribution:
 
-#### 🎩 Fedora / Nobara
+#### 🎩 Fedora & Derivatives
 **[📖 Complete Guide](docs/INSTALL_FEDORA.md)**
 
-Method using modified Lenovo drivers with automatic system detection.
+Method using modified Lenovo drivers with automatic system detection. Works on Fedora, Nobara, Ultramarine and other Fedora-based distributions.
 
 **Manual installation:**
 ```bash
@@ -112,7 +112,7 @@ paru -S libfprint-fpcmoh-git fprintd
 ```
 FPC-10a5-9800/
 ├── docs/                          # 📚 Detailed documentation
-│   ├── INSTALL_FEDORA.md         # Guide for Fedora/Nobara
+│   ├── INSTALL_FEDORA.md         # Guide for Fedora & Derivatives
 │   ├── INSTALL_UBUNTU.md         # Guide for Ubuntu
 │   ├── INSTALL_DEEPIN.md         # Guide for Deepin 25
 │   └── INSTALL_ARCH.md           # Guide for Arch Linux
@@ -120,7 +120,7 @@ FPC-10a5-9800/
 │   ├── original/                 # Unmodified drivers
 │   │   └── r1slm02w.zip          # Original Lenovo driver (for Deepin/manual Ubuntu)
 │   └── modified/                 # Modified drivers
-│       └── fedora-nobara/        # Scripts adapted for Fedora/Nobara
+│       └── fedora-nobara/        # Scripts adapted for Fedora & Derivatives
 │           └── r1slm02w/
 │               ├── FPC_driver_linux_27.26.23.39/
 │               └── FPC_driver_linux_libfprint/
@@ -183,7 +183,9 @@ This repository is licensed under the [MIT License](LICENSE).
 
 | Distribution | Method | Status | Guide |
 |--------------|--------|--------|------|
-| **Fedora/Nobara** | Modified Lenovo drivers | ✅ Tested | [View guide](docs/INSTALL_FEDORA.md) |
+| **Fedora & Derivatives** | Modified Lenovo drivers | ✅ Tested | [View guide](docs/INSTALL_FEDORA.md) |
+| **Nobara** | Modified Lenovo drivers | ✅ Tested | [View guide](docs/INSTALL_FEDORA.md) |
+| **Ultramarine** | Modified Lenovo drivers | ✅ Tested | [View guide](docs/INSTALL_FEDORA.md) |
 | **Ubuntu** | Official PPA | ✅ Official | [View guide](docs/INSTALL_UBUNTU.md) |
 | **Deepin 25** | Lenovo scripts (immutable system) | ✅ Tested | [View guide](docs/INSTALL_DEEPIN.md) |
 | **Arch Linux** | AUR (libfprint-fpcmoh-git) | ✅ Tested | [View guide](docs/INSTALL_ARCH.md) |
@@ -203,12 +205,12 @@ This repository is licensed under the [MIT License](LICENSE).
 **Arch Linux:**
 - **Only method:** AUR package → Better system integration
 
-**Fedora/Nobara:**
+**Fedora & Derivatives (Nobara, Ultramarine, etc.):**
 - **Only method:** Modified Lenovo drivers (included here)
 
 ### 🔗 Useful Links
 
-**Fedora/Nobara:**
+**Fedora & Derivatives:**
 - [Original tutorial by Lukáš Maňák](https://lukan.cz/2024/10/fedora-40-fpc-fingerprint-lenovo-thinkpad/)
 - [Original Lenovo driver](https://pcsupport.lenovo.com/us/en/products/laptops-and-netbooks/thinkpad-edge-laptops/thinkpad-e14-gen-4-type-21eb-and-21ec/downloads/ds563477)
 
@@ -222,7 +224,7 @@ This repository is licensed under the [MIT License](LICENSE).
 
 ### 👥 Credits
 
-**Fedora/Nobara Scripts:**
+**Fedora & Derivatives Scripts:**
 - **Tutorial and Modifications:** [Lukáš Maňák](https://lukan.cz/2024/10/fedora-40-fpc-fingerprint-lenovo-thinkpad/)
 - **Original Driver:** Lenovo (Ubuntu 20.04/22.04)
 
@@ -244,7 +246,7 @@ This repository is licensed under the [MIT License](LICENSE).
 
 ### 🔍 Descripción
 
-Este repositorio proporciona drivers e instrucciones para instalar el lector de huellas dactilares FPC 10a5:9800 en múltiples distribuciones de Linux, incluyendo Fedora, Nobara, Ubuntu y Arch Linux.
+Este repositorio proporciona drivers e instrucciones para instalar el lector de huellas dactilares FPC 10a5:9800 en múltiples distribuciones de Linux, incluyendo Fedora y derivadas (Nobara, Ultramarine, etc.), Ubuntu y Arch Linux.
 
 ### 🖥️ Hardware Soportado
 
@@ -269,10 +271,10 @@ Si ves "10a5:9800" en la salida, ¡este repositorio es para ti!
 
 Selecciona tu distribución:
 
-#### 🎩 Fedora / Nobara
+#### 🎩 Fedora y derivadas
 **[📖 Guía Completa](docs/INSTALL_FEDORA.md)**
 
-Método usando drivers modificados de Lenovo con detección automática del sistema.
+Método usando drivers modificados de Lenovo con detección automática del sistema. Funciona en Fedora, Nobara, Ultramarine y otras distribuciones basadas en Fedora.
 
 **Instalación manual:**
 ```bash
@@ -342,7 +344,7 @@ paru -S libfprint-fpcmoh-git fprintd
 ```
 FPC-10a5-9800/
 ├── docs/                          # 📚 Documentación detallada
-│   ├── INSTALL_FEDORA.md         # Guía para Fedora/Nobara
+│   ├── INSTALL_FEDORA.md         # Guía para Fedora y derivadas
 │   ├── INSTALL_UBUNTU.md         # Guía para Ubuntu
 │   ├── INSTALL_DEEPIN.md         # Guía para Deepin 25
 │   └── INSTALL_ARCH.md           # Guía para Arch Linux
@@ -350,7 +352,7 @@ FPC-10a5-9800/
 │   ├── original/                 # Drivers sin modificar
 │   │   └── r1slm02w.zip          # Driver original de Lenovo (para Deepin/Ubuntu manual)
 │   └── modified/                 # Drivers modificados
-│       └── fedora-nobara/        # Scripts adaptados para Fedora/Nobara
+│       └── fedora-nobara/        # Scripts adaptados para Fedora y derivadas
 │           └── r1slm02w/
 │               ├── FPC_driver_linux_27.26.23.39/
 │               └── FPC_driver_linux_libfprint/
@@ -413,7 +415,9 @@ Este repositorio está licenciado bajo la [Licencia MIT](LICENSE).
 
 | Distribución | Método | Estado | Guía |
 |--------------|--------|--------|------|
-| **Fedora/Nobara** | Drivers modificados de Lenovo | ✅ Probado | [Ver guía](docs/INSTALL_FEDORA.md) |
+| **Fedora y derivadas** | Drivers modificados de Lenovo | ✅ Probado | [Ver guía](docs/INSTALL_FEDORA.md) |
+| **Nobara** | Drivers modificados de Lenovo | ✅ Probado | [Ver guía](docs/INSTALL_FEDORA.md) |
+| **Ultramarine** | Drivers modificados de Lenovo | ✅ Probado | [Ver guía](docs/INSTALL_FEDORA.md) |
 | **Ubuntu** | PPA oficial | ✅ Oficial | [Ver guía](docs/INSTALL_UBUNTU.md) |
 | **Deepin 25** | Scripts de Lenovo (sistema inmutable) | ✅ Probado | [Ver guía](docs/INSTALL_DEEPIN.md) |
 | **Arch Linux** | AUR (libfprint-fpcmoh-git) | ✅ Probado | [Ver guía](docs/INSTALL_ARCH.md) |
@@ -433,12 +437,12 @@ Este repositorio está licenciado bajo la [Licencia MIT](LICENSE).
 **Arch Linux:**
 - **Único método:** Paquete AUR → Mejor integración con el sistema
 
-**Fedora/Nobara:**
+**Fedora y derivadas (Nobara, Ultramarine, etc.):**
 - **Único método:** Drivers modificados de Lenovo (incluidos aquí)
 
 ### 🔗 Enlaces Útiles
 
-**Fedora/Nobara:**
+**Fedora y derivadas:**
 - [Tutorial original de Lukáš Maňák](https://lukan.cz/2024/10/fedora-40-fpc-fingerprint-lenovo-thinkpad/)
 - [Driver original de Lenovo](https://pcsupport.lenovo.com/us/en/products/laptops-and-netbooks/thinkpad-edge-laptops/thinkpad-e14-gen-4-type-21eb-and-21ec/downloads/ds563477)
 
@@ -452,7 +456,7 @@ Este repositorio está licenciado bajo la [Licencia MIT](LICENSE).
 
 ### 👥 Créditos
 
-**Scripts para Fedora/Nobara:**
+**Scripts para Fedora y derivadas:**
 - **Tutorial y Modificaciones:** [Lukáš Maňák](https://lukan.cz/2024/10/fedora-40-fpc-fingerprint-lenovo-thinkpad/)
 - **Driver Original:** Lenovo (Ubuntu 20.04/22.04)
 

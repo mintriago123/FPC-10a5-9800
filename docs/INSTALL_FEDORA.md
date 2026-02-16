@@ -1,4 +1,4 @@
-# FPC 10a5:9800 Fingerprint Reader - Fedora/Nobara Installation Guide
+# FPC 10a5:9800 Fingerprint Reader - Fedora & Derivatives Installation Guide
 
 > 🌐 **Languages:** [English](#english) | [Español](#español)
 
@@ -7,7 +7,7 @@
 ## English
 
 ### Prerequisites
-- Fedora or Nobara Linux
+- Fedora or Fedora-based distribution (Nobara, Ultramarine, etc.)
 - FPC Fingerprint Reader ID: 10a5:9800
 - Root/sudo access
 
@@ -53,7 +53,7 @@ sudo reboot
 
 ### Configuration
 
-#### For GNOME (default on Fedora/Nobara):
+#### For GNOME (default on Fedora and derivatives):
 1. Go to **Settings** → **Users** → **Fingerprint Login**
 2. Click **Enable**
 3. Follow the on-screen instructions to scan your fingerprints
@@ -180,7 +180,7 @@ sudo dnf reinstall libfprint
 ## Español
 
 ### Requisitos Previos
-- Fedora o Nobara Linux
+- Fedora o distribución basada en Fedora (Nobara, Ultramarine, etc.)
 - Lector de Huellas FPC con ID: 10a5:9800
 - Acceso root/sudo
 
@@ -226,7 +226,7 @@ sudo reboot
 
 ### Configuración
 
-#### Para GNOME (predeterminado en Fedora/Nobara):
+#### Para GNOME (predeterminado en Fedora y derivadas):
 1. Ve a **Configuración** → **Usuarios** → **Inicio de sesión con huella dactilar**
 2. Haz clic en **Activar**
 3. Sigue las instrucciones en pantalla para escanear tus huellas dactilares

@@ -3,6 +3,31 @@
 Todos los cambios notables en este proyecto serán documentados en este archivo.
 All notable changes to this project will be documented in this file.
 
+## [2.1.0] - 2026-02-15
+
+### 🐛 Corregido / Fixed
+- **Rutas de Fedora/Nobara corregidas / Fedora/Nobara paths fixed:**
+  - Corregida la ruta de instalación: faltaba `r1slm02w/` en `drivers/modified/fedora-nobara/` (README y `docs/INSTALL_FEDORA.md`)
+  - Fixed installation path: missing `r1slm02w/` in `drivers/modified/fedora-nobara/` (README and `docs/INSTALL_FEDORA.md`)
+
+- **Paquete faltante en Ubuntu / Missing package on Ubuntu:**
+  - Agregado `libpam-fprintd` al comando `apt install` en README y `docs/INSTALL_UBUNTU.md`
+  - Added `libpam-fprintd` to `apt install` command in README and `docs/INSTALL_UBUNTU.md`
+
+### 🗑️ Eliminado / Removed
+- **Referencias a scripts inexistentes / References to non-existent scripts:**
+  - Eliminadas referencias a `drivers/install-ubuntu.sh` y `drivers/install-arch.sh` que no existen en el repositorio
+  - Removed references to `drivers/install-ubuntu.sh` and `drivers/install-arch.sh` which don't exist in the repository
+  - Eliminadas secciones "Instalación Rápida" / "Quick Installation" del README
+
+### 🔄 Cambiado / Changed
+- **Nombre del repositorio en diagramas de estructura / Repository name in structure diagrams:**
+  - Corregido de `FPC-10a5-9800-Fedora-Nobara/` a `FPC-10a5-9800/` en ambos diagramas del README
+  - Fixed from `FPC-10a5-9800-Fedora-Nobara/` to `FPC-10a5-9800/` in both README diagrams
+- **Diagramas de estructura actualizados / Updated structure diagrams:**
+  - Ahora reflejan la estructura real del repositorio (incluyen subcarpeta `r1slm02w/`)
+  - Now reflect the actual repository structure (include `r1slm02w/` subfolder)
+
 ## [2.0.0] - 2025-11-26
 
 ### ✨ Agregado / Added
