@@ -2,6 +2,7 @@
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Fedora & Derivatives](https://img.shields.io/badge/Fedora%20%26%20Derivatives-✓-51A2DA.svg?logo=fedora)](docs/INSTALL_FEDORA.md)
+[![Fedora Atomic](https://img.shields.io/badge/Fedora%20Atomic%20(uBlue)-✓-51A2DA.svg?logo=fedora)](docs/INSTALL_FEDORA_ATOMIC.md)
 [![Ubuntu](https://img.shields.io/badge/Ubuntu-✓-E95420.svg?logo=ubuntu)](docs/INSTALL_UBUNTU.md)
 [![Arch Linux](https://img.shields.io/badge/Arch%20Linux-✓-1793D1.svg?logo=arch-linux)](docs/INSTALL_ARCH.md)
 [![Contributions Welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg)](CONTRIBUTING.md)
@@ -42,9 +43,9 @@ Select your distribution:
 #### 🎩 Fedora & Derivatives
 **[📖 Complete Guide](docs/INSTALL_FEDORA.md)**
 
-Method using modified Lenovo drivers with automatic system detection. Works on Fedora, Nobara, Ultramarine and other Fedora-based distributions.
+Works on Fedora, Nobara, Ultramarine and other Fedora-based distributions. Two methods available:
 
-**Manual installation:**
+**Method 1 — Scripts (primary):**
 ```bash
 cd drivers/modified/fedora-nobara/r1slm02w/FPC_driver_linux_27.26.23.39/install_fpc
 chmod +x install.sh && sudo ./install.sh
@@ -53,7 +54,29 @@ cd ../../FPC_driver_linux_libfprint/install_libfprint
 chmod +x install.sh && sudo ./install.sh
 ```
 
-#### 🟠 Ubuntu
+**Method 2 — RPM package (alternative, tested on Ultramarine 43):**
+```bash
+cd "drivers/Fedora Atomic"
+sudo dnf install ./libfprint-1.94.10-1.lenovo.fc42.x86_64.rpm
+```
+`dnf` replaces `libfprint` automatically. Run `fprintd-enroll` as a regular user (not with `sudo`).
+
+#### �🔴 Fedora Atomic (Aurora, Bluefin, Bazzite)
+**[📖 Complete Guide](docs/INSTALL_FEDORA_ATOMIC.md)**
+
+Immutable Fedora-based distributions use `rpm-ostree` to replace the system `libfprint`. Works on **Fedora 42 and Fedora 43** based images.
+
+**Tested on:** Aurora, Aurora DX, Bluefin, Bluefin DX, Bazzite, Bazzite DX.
+
+```bash
+cd "drivers/Fedora Atomic"
+rpm-ostree override replace libfprint-1.94.10-1.lenovo.fc42.x86_64.rpm
+systemctl reboot
+```
+
+⚠️ **Note:** The standard installation scripts do **not** work on immutable systems. Only use `rpm-ostree override replace`.
+
+#### �🟠 Ubuntu
 **[📖 Complete Guide](docs/INSTALL_UBUNTU.md)**
 
 Use the official libfprint-tod1-group PPA (only working method).
@@ -113,10 +136,14 @@ paru -S libfprint-fpcmoh-git fprintd
 FPC-10a5-9800/
 ├── docs/                          # 📚 Detailed documentation
 │   ├── INSTALL_FEDORA.md         # Guide for Fedora & Derivatives
+│   ├── INSTALL_FEDORA_ATOMIC.md  # Guide for Fedora Atomic (Aurora, Bluefin, Bazzite)
+│   ├── REBUILD_RPM.md            # Advanced: recompiling the RPM after a major update
 │   ├── INSTALL_UBUNTU.md         # Guide for Ubuntu
 │   ├── INSTALL_DEEPIN.md         # Guide for Deepin 25
 │   └── INSTALL_ARCH.md           # Guide for Arch Linux
 ├── drivers/                       # 🔧 Drivers and binary files
+│   ├── Fedora Atomic/            # RPM package for Fedora Atomic distros
+│   │   └── libfprint-1.94.10-1.lenovo.fc42.x86_64.rpm
 │   ├── original/                 # Unmodified drivers
 │   │   └── r1slm02w.zip          # Original Lenovo driver (for Deepin/manual Ubuntu)
 │   └── modified/                 # Modified drivers
@@ -185,7 +212,10 @@ This repository is licensed under the [MIT License](LICENSE).
 |--------------|--------|--------|------|
 | **Fedora & Derivatives** | Modified Lenovo drivers | ✅ Tested | [View guide](docs/INSTALL_FEDORA.md) |
 | **Nobara** | Modified Lenovo drivers | ✅ Tested | [View guide](docs/INSTALL_FEDORA.md) |
-| **Ultramarine** | Modified Lenovo drivers | ✅ Tested | [View guide](docs/INSTALL_FEDORA.md) |
+| **Ultramarine** | Modified Lenovo drivers / RPM package | ✅ Tested (incl. F43) | [View guide](docs/INSTALL_FEDORA.md) |
+| **Aurora / Aurora DX** | rpm-ostree override replace | ✅ Tested (F42/F43) | [View guide](docs/INSTALL_FEDORA_ATOMIC.md) |
+| **Bluefin / Bluefin DX** | rpm-ostree override replace | ✅ Tested (F42/F43) | [View guide](docs/INSTALL_FEDORA_ATOMIC.md) |
+| **Bazzite / Bazzite DX** | rpm-ostree override replace | ✅ Tested| [View guide](docs/INSTALL_FEDORA_ATOMIC.md) |
 | **Ubuntu** | Official PPA | ✅ Official | [View guide](docs/INSTALL_UBUNTU.md) |
 | **Deepin 25** | Lenovo scripts (immutable system) | ✅ Tested | [View guide](docs/INSTALL_DEEPIN.md) |
 | **Arch Linux** | AUR (libfprint-fpcmoh-git) | ✅ Tested | [View guide](docs/INSTALL_ARCH.md) |
@@ -206,7 +236,14 @@ This repository is licensed under the [MIT License](LICENSE).
 - **Only method:** AUR package → Better system integration
 
 **Fedora & Derivatives (Nobara, Ultramarine, etc.):**
-- **Only method:** Modified Lenovo drivers (included here)
+- **Primary method:** Modified Lenovo drivers (scripts included here)
+- **Alternative method:** `dnf install` with the Lenovo-patched RPM — tested on Ultramarine 43; `dnf` replaces `libfprint` automatically
+  - ⚠️ Run `fprintd-enroll` as a regular user (without `sudo`), otherwise you'll get a permission error
+
+**Fedora Atomic (Aurora, Bluefin, Bazzite — standard and DX):**
+- **Only method:** `rpm-ostree override replace` with the Lenovo-patched RPM
+- Standard scripts do **not** work on immutable systems
+- Tested on Fedora 42 and 43 based images
 
 ### 🔗 Useful Links
 
@@ -274,9 +311,9 @@ Selecciona tu distribución:
 #### 🎩 Fedora y derivadas
 **[📖 Guía Completa](docs/INSTALL_FEDORA.md)**
 
-Método usando drivers modificados de Lenovo con detección automática del sistema. Funciona en Fedora, Nobara, Ultramarine y otras distribuciones basadas en Fedora.
+Funciona en Fedora, Nobara, Ultramarine y otras distribuciones basadas en Fedora. Dos métodos disponibles:
 
-**Instalación manual:**
+**Método 1 — Scripts (principal):**
 ```bash
 cd drivers/modified/fedora-nobara/r1slm02w/FPC_driver_linux_27.26.23.39/install_fpc
 chmod +x install.sh && sudo ./install.sh
@@ -285,7 +322,29 @@ cd ../../FPC_driver_linux_libfprint/install_libfprint
 chmod +x install.sh && sudo ./install.sh
 ```
 
-#### 🟠 Ubuntu
+**Método 2 — Paquete RPM (alternativo, probado en Ultramarine 43):**
+```bash
+cd "drivers/Fedora Atomic"
+sudo dnf install ./libfprint-1.94.10-1.lenovo.fc42.x86_64.rpm
+```
+`dnf` reemplaza `libfprint` automáticamente. Ejecuta `fprintd-enroll` como usuario normal (sin `sudo`).
+
+#### �🔴 Fedora Atomic (Aurora, Bluefin, Bazzite)
+**[📖 Guía Completa](docs/INSTALL_FEDORA_ATOMIC.md)**
+
+Las distribuciones inmutables basadas en Fedora usan `rpm-ostree` para reemplazar el `libfprint` del sistema. Funciona en imágenes basadas en **Fedora 42 y Fedora 43**.
+
+**Probado en:** Aurora, Aurora DX, Bluefin, Bluefin DX, Bazzite, Bazzite DX.
+
+```bash
+cd "drivers/Fedora Atomic"
+rpm-ostree override replace libfprint-1.94.10-1.lenovo.fc42.x86_64.rpm
+systemctl reboot
+```
+
+⚠️ **Nota:** Los scripts de instalación estándar **no** funcionan en sistemas inmutables. Usa únicamente `rpm-ostree override replace`.
+
+#### �🟠 Ubuntu
 **[📖 Guía Completa](docs/INSTALL_UBUNTU.md)**
 
 Usa el PPA oficial de libfprint-tod1-group (único método funcional).
@@ -345,10 +404,14 @@ paru -S libfprint-fpcmoh-git fprintd
 FPC-10a5-9800/
 ├── docs/                          # 📚 Documentación detallada
 │   ├── INSTALL_FEDORA.md         # Guía para Fedora y derivadas
+│   ├── INSTALL_FEDORA_ATOMIC.md  # Guía para Fedora Atomic (Aurora, Bluefin, Bazzite)
+│   ├── REBUILD_RPM.md            # Avanzado: recompilar el RPM tras una actualización mayor
 │   ├── INSTALL_UBUNTU.md         # Guía para Ubuntu
 │   ├── INSTALL_DEEPIN.md         # Guía para Deepin 25
 │   └── INSTALL_ARCH.md           # Guía para Arch Linux
 ├── drivers/                       # 🔧 Drivers y archivos binarios
+│   ├── Fedora Atomic/            # Paquete RPM para distros Fedora Atomic
+│   │   └── libfprint-1.94.10-1.lenovo.fc42.x86_64.rpm
 │   ├── original/                 # Drivers sin modificar
 │   │   └── r1slm02w.zip          # Driver original de Lenovo (para Deepin/Ubuntu manual)
 │   └── modified/                 # Drivers modificados
@@ -417,7 +480,10 @@ Este repositorio está licenciado bajo la [Licencia MIT](LICENSE).
 |--------------|--------|--------|------|
 | **Fedora y derivadas** | Drivers modificados de Lenovo | ✅ Probado | [Ver guía](docs/INSTALL_FEDORA.md) |
 | **Nobara** | Drivers modificados de Lenovo | ✅ Probado | [Ver guía](docs/INSTALL_FEDORA.md) |
-| **Ultramarine** | Drivers modificados de Lenovo | ✅ Probado | [Ver guía](docs/INSTALL_FEDORA.md) |
+| **Ultramarine** | Drivers modificados de Lenovo / Paquete RPM | ✅ Probado (inc. F43) | [Ver guía](docs/INSTALL_FEDORA.md) |
+| **Aurora / Aurora DX** | rpm-ostree override replace | ✅ Probado (F42/F43) | [Ver guía](docs/INSTALL_FEDORA_ATOMIC.md) |
+| **Bluefin / Bluefin DX** | rpm-ostree override replace | ✅ Probado (F42/F43) | [Ver guía](docs/INSTALL_FEDORA_ATOMIC.md) |
+| **Bazzite / Bazzite DX** | rpm-ostree override replace | ✅ Probado (F42/F43) | [Ver guía](docs/INSTALL_FEDORA_ATOMIC.md) |
 | **Ubuntu** | PPA oficial | ✅ Oficial | [Ver guía](docs/INSTALL_UBUNTU.md) |
 | **Deepin 25** | Scripts de Lenovo (sistema inmutable) | ✅ Probado | [Ver guía](docs/INSTALL_DEEPIN.md) |
 | **Arch Linux** | AUR (libfprint-fpcmoh-git) | ✅ Probado | [Ver guía](docs/INSTALL_ARCH.md) |
@@ -438,7 +504,13 @@ Este repositorio está licenciado bajo la [Licencia MIT](LICENSE).
 - **Único método:** Paquete AUR → Mejor integración con el sistema
 
 **Fedora y derivadas (Nobara, Ultramarine, etc.):**
-- **Único método:** Drivers modificados de Lenovo (incluidos aquí)
+- **Método principal:** Drivers modificados de Lenovo (scripts incluidos aquí)
+- **Método alternativo:** `dnf install` con el RPM parcheado por Lenovo — probado en Ultramarine 43; `dnf` reemplaza `libfprint` automáticamente
+
+**Fedora Atomic (Aurora, Bluefin, Bazzite — normales y DX):**
+- **Único método:** `rpm-ostree override replace` con el RPM parcheado por Lenovo
+- Los scripts estándar **no** funcionan en sistemas inmutables
+- Probado en imágenes basadas en Fedora 42 y 43
 
 ### 🔗 Enlaces Útiles
 

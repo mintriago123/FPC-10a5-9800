@@ -3,6 +3,35 @@
 Todos los cambios notables en este proyecto serán documentados en este archivo.
 All notable changes to this project will be documented in this file.
 
+## [2.2.0] - 2026-02-28
+
+### ✨ Agregado / Added
+- **Soporte para Fedora Atomic (distribuciones inmutables uBlue) / Support for Fedora Atomic (uBlue immutable distros):**
+  - Agregado soporte de instalación mediante `rpm-ostree override replace` para distribuciones basadas en Fedora Atomic
+  - Added installation support via `rpm-ostree override replace` for Fedora Atomic-based distributions
+  - Debería funcionar en imágenes basadas en **Fedora 42 y 43** / Should work on images based on **Fedora 42 and 43**
+  - Probado en Aurora, Aurora DX, Bluefin, Bluefin DX, Bazzite y Bazzite DX / Tested on Aurora, Aurora DX, Bluefin, Bluefin DX, Bazzite and Bazzite DX
+  - Comando de instalación: `rpm-ostree override replace libfprint-1.94.10-1.lenovo.fc42.x86_64.rpm`
+  - 📖 Nueva guía `docs/INSTALL_FEDORA_ATOMIC.md` (bilingüe ES/EN) / New guide `docs/INSTALL_FEDORA_ATOMIC.md` (bilingual ES/EN)
+  - ✅ Confirmado que el RPM también funciona en Fedora mutable vía `dnf install` (probado en Ultramarine 43) / Confirmed RPM also works on mutable Fedora via `dnf install` (tested on Ultramarine 43)
+  - Método RPM agregado como método alternativo en las secciones de instalación del README (EN y ES) / RPM method added as alternative method to the README installation sections (EN and ES)
+  - Documentación de modificaciones de scripts actualizada en `docs/INSTALL_FEDORA.md` para reflejar que la lógica if/else fue eliminada y los scripts son ahora exclusivos para Fedora / Script modifications documentation updated in `docs/INSTALL_FEDORA.md` to reflect that if/else logic was removed and scripts are now Fedora-only
+  - 📖 Nueva guía avanzada `docs/REBUILD_RPM.md` — recompilación del RPM con Toolbox/Distrobox para futuras versiones de Fedora / New advanced guide `docs/REBUILD_RPM.md` — RPM recompilation with Toolbox/Distrobox for future Fedora versions
+
+### 🔄 Cambiado / Changed
+- **`docs/INSTALL_FEDORA.md` actualizado / updated:**
+  - Sección de modificaciones de scripts corregida: eliminado el bloque `if/else` de detección de OS que ya no existe en los scripts reales; ahora muestran los comandos Fedora directamente / Script modifications section corrected: removed the `if/else` OS detection block that no longer exists in the actual scripts; now shows the Fedora commands directly
+  - Sección "Desinstalar / Uninstall" reescrita: eliminado `dnf versionlock delete libfprint` (obsoleto), dividida en dos sub-secciones según el método de instalación usado (scripts vs. RPM) / "Uninstall" section rewritten: removed obsolete `dnf versionlock delete libfprint`, split into two sub-sections depending on the installation method used (scripts vs. RPM)
+  - Método RPM agregado a las instrucciones de instalación con chapeau que indica al usuario si puede saltarse la sección / RPM method added to installation instructions with a note indicating users can skip the section if scripts worked
+  - Hardware Soportado agregado a la sección española (faltaba) / Hardware Soportado section added to the Spanish section (was missing)
+
+- **README actualizado / Updated README:**
+  - Nuevo badge de Fedora Atomic / New Fedora Atomic badge
+  - Nuevas secciones de instalación para Fedora Atomic en inglés y español / New Fedora Atomic installation sections in English and Spanish
+  - Aurora, Bluefin y Bazzite (normales y DX) agregados a las tablas de distribuciones soportadas / Aurora, Bluefin and Bazzite (standard and DX) added to supported distributions tables
+  - Diagramas de estructura del repositorio actualizados para incluir `drivers/Fedora Atomic/` y `docs/INSTALL_FEDORA_ATOMIC.md` / Repository structure diagrams updated to include `drivers/Fedora Atomic/` and `docs/INSTALL_FEDORA_ATOMIC.md`
+  - Sección "¿Qué método debo usar?" actualizada / "Which method should I use?" section updated
+
 ## [2.1.0] - 2026-02-15
 
 ### 🐛 Corregido / Fixed

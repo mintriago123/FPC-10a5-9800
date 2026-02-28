@@ -51,6 +51,36 @@ Although it may work without rebooting, it's recommended:
 sudo reboot
 ```
 
+---
+
+### Alternative Method: RPM Package (Tested on Ultramarine 43)
+
+> If the scripts above worked for you, you're done — skip this section entirely.
+> This method is useful if you prefer a single `dnf` command, or if the scripts fail on your system for any reason.
+
+As an alternative to the scripts above, you can install the pre-built Lenovo-patched RPM directly with `dnf`. This method was tested on **Ultramarine Linux 43** and replaces the system `libfprint` automatically thanks to the `Obsoletes` tag in the package.
+
+```bash
+cd drivers/Fedora\ Atomic
+sudo dnf install ./libfprint-1.94.10-1.lenovo.fc42.x86_64.rpm
+```
+
+`dnf` will show a transaction summary similar to:
+```
+Upgrading:  libfprint  x86_64  1.94.10-1.lenovo.fc42  (replacing libfprint x86_64 1.94.9-4.fc43)
+```
+Confirm with `y` and reboot.
+
+> ⚠️ **Warning:** The RPM is signed with a Lenovo key not in your system's keyring. `dnf` will warn about a missing OpenPGP signature — this is expected. Review the package source before accepting.
+
+After installation, enroll your fingerprint **as a regular user (without sudo)**:
+```bash
+fprintd-enroll
+```
+You will be prompted to authenticate via your desktop session (PolicyKit). Running it with `sudo` will cause a permission error.
+
+---
+
 ### Configuration
 
 #### For GNOME (default on Fedora and derivatives):
@@ -69,44 +99,34 @@ The original Lenovo scripts were designed for Ubuntu. This repository includes m
 
 #### First Script (`FPC_driver_linux_27.26.23.39/install_fpc/install.sh`)
 
-**Main modification:**
+The script installs the proprietary FPC library directly to the Fedora 64-bit library path:
+
 ```bash
-if grep -qE 'ID=fedora' /etc/os-release; then
-  sudo cp ./libfpcbep.so /usr/lib64/
-  sudo chmod +x /usr/lib64/libfpcbep.so
-else
-  sudo cp ./libfpcbep.so /usr/lib/x86_64-linux-gnu/
-fi;
+sudo cp ./libfpcbep.so /usr/lib64/
+sudo chmod +x /usr/lib64/libfpcbep.so
 ```
 
-**Changes:**
-- Detects if the system is Fedora
-- On Fedora: installs to `/usr/lib64/` (64-bit library path on Fedora)
-- On Ubuntu: installs to `/usr/lib/x86_64-linux-gnu/`
+**Changes from original:**
+- Installs to `/usr/lib64/` instead of `/usr/lib/x86_64-linux-gnu/` (Ubuntu path)
+- OS detection logic removed; script is now Fedora-only
 
 #### Second Script (`FPC_driver_linux_libfprint/install_libfprint/install.sh`)
 
-**Main modification:**
+The script installs `libfprint` and related packages via `dnf`, then copies the patched libraries to the correct Fedora paths:
+
 ```bash
-if grep -qE 'ID=fedora' /etc/os-release; then
-  sudo dnf -y install libfprint fprintd fprintd-pam
-  sudo cp -r lib/* /usr/lib/
-  sudo cp usr/lib/x86_64-linux-gnu/* /usr/lib64/
-  sudo chmod +x /usr/lib64/libfprint-2*
-else
-  sudo cp -r lib/* /lib/
-  sudo cp -r usr/* /usr/
-  sudo mkdir -p /var/log/fpc
-  echo "libfprint-2-2 hold" | sudo dpkg --set-selections
-  sudo chmod 755 /usr/lib/x86_64-linux-gnu/libfprint-2.so.2.0.0
-fi
+sudo dnf -y install libfprint fprintd fprintd-pam
+sudo cp -r lib/* /usr/lib/
+sudo cp usr/lib/x86_64-linux-gnu/* /usr/lib64/
+sudo chmod +x /usr/lib64/libfprint-2*
 ```
 
-**Changes:**
+**Changes from original:**
 - Uses `dnf` instead of `apt`
-- Installs required packages: libfprint, fprintd, fprintd-pam
-- Copies libraries to correct Fedora paths
-- **Note:** libfprint version is not locked since versionlock command doesn't work correctly
+- Installs required packages: `libfprint`, `fprintd`, `fprintd-pam`
+- Copies libraries to Fedora paths (`/usr/lib/`, `/usr/lib64/`)
+- OS detection logic removed; script is now Fedora-only
+- libfprint version is **not** locked (versionlock is not used)
 
 ### Troubleshooting
 
@@ -142,18 +162,27 @@ If you experience problems after updating the system, you may need to reinstall 
 
 ### Uninstall
 
-If you need to uninstall the driver:
+#### Method 1 — Scripts
+
+If you installed using the scripts, remove the libraries manually and reinstall the upstream `libfprint`:
 
 ```bash
 # Remove installed libraries
-sudo rm /usr/lib64/libfpcbep.so
-sudo rm /usr/lib64/libfprint-2.so.2*
+sudo rm -f /usr/lib64/libfpcbep.so
+sudo rm -f /usr/lib64/libfprint-2.so.2 /usr/lib64/libfprint-2.so.2.0.0
+sudo rm -f /usr/lib/udev/rules.d/60-libfprint-2-device-fpc.rules
 
-# Unlock libfprint
-sudo dnf versionlock delete libfprint
-
-# Reinstall original libfprint
+# Reinstall upstream libfprint
 sudo dnf reinstall libfprint
+```
+
+#### Method 2 — RPM package
+
+If you installed using `dnf install` with the Lenovo RPM, remove it and reinstall the upstream package:
+
+```bash
+sudo dnf remove libfprint
+sudo dnf install libfprint
 ```
 
 ### Credits
@@ -224,6 +253,36 @@ Aunque puede funcionar sin reiniciar, se recomienda:
 sudo reboot
 ```
 
+---
+
+### Método Alternativo: Paquete RPM (Probado en Ultramarine 43)
+
+> Si los scripts anteriores funcionaron correctamente, ya terminaste — puedes saltarte esta sección.
+> Este método es útil si prefieres un único comando `dnf`, o si los scripts fallan en tu sistema por alguna razón.
+
+Como alternativa a los scripts anteriores, puedes instalar directamente el RPM parcheado por Lenovo con `dnf`. Este método fue probado en **Ultramarine Linux 43** y reemplaza el `libfprint` del sistema automáticamente gracias a la etiqueta `Obsoletes` del paquete.
+
+```bash
+cd drivers/Fedora\ Atomic
+sudo dnf install ./libfprint-1.94.10-1.lenovo.fc42.x86_64.rpm
+```
+
+`dnf` mostrará un resumen de transacción similar a:
+```
+Modernizando:  libfprint  x86_64  1.94.10-1.lenovo.fc42  (reemplazando libfprint x86_64 1.94.9-4.fc43)
+```
+Confirma con `y` y reinicia.
+
+> ⚠️ **Advertencia:** El RPM está firmado con una clave que no está en el anillo de claves de tu sistema. `dnf` mostrará un aviso sobre la firma OpenPGP omitida — esto es esperado. Revisa la procedencia del paquete antes de aceptar.
+
+Tras la instalación, registra tu huella **como usuario normal (sin sudo)**:
+```bash
+fprintd-enroll
+```
+Se te pedirá autenticación mediante la sesión de escritorio (PolicyKit). Ejecutarlo con `sudo` causará un error de permisos.
+
+---
+
 ### Configuración
 
 #### Para GNOME (predeterminado en Fedora y derivadas):
@@ -242,44 +301,34 @@ Los scripts originales de Lenovo fueron diseñados para Ubuntu. Este repositorio
 
 #### Primer Script (`FPC_driver_linux_27.26.23.39/install_fpc/install.sh`)
 
-**Modificación principal:**
+El script instala la biblioteca propietaria de FPC directamente en la ruta de bibliotecas de 64 bits de Fedora:
+
 ```bash
-if grep -qE 'ID=fedora' /etc/os-release; then
-  sudo cp ./libfpcbep.so /usr/lib64/
-  sudo chmod +x /usr/lib64/libfpcbep.so
-else
-  sudo cp ./libfpcbep.so /usr/lib/x86_64-linux-gnu/
-fi;
+sudo cp ./libfpcbep.so /usr/lib64/
+sudo chmod +x /usr/lib64/libfpcbep.so
 ```
 
-**Cambios:**
-- Detecta si el sistema es Fedora
-- En Fedora: instala en `/usr/lib64/` (ruta de bibliotecas de 64 bits en Fedora)
-- En Ubuntu: instala en `/usr/lib/x86_64-linux-gnu/`
+**Cambios respecto al original:**
+- Instala en `/usr/lib64/` en lugar de `/usr/lib/x86_64-linux-gnu/` (ruta de Ubuntu)
+- Lógica de detección de OS eliminada; el script es ahora exclusivo para Fedora
 
 #### Segundo Script (`FPC_driver_linux_libfprint/install_libfprint/install.sh`)
 
-**Modificación principal:**
+El script instala `libfprint` y paquetes relacionados mediante `dnf`, y copia las bibliotecas parcheadas a las rutas correctas de Fedora:
+
 ```bash
-if grep -qE 'ID=fedora' /etc/os-release; then
-  sudo dnf -y install libfprint fprintd fprintd-pam
-  sudo cp -r lib/* /usr/lib/
-  sudo cp usr/lib/x86_64-linux-gnu/* /usr/lib64/
-  sudo chmod +x /usr/lib64/libfprint-2*
-else
-  sudo cp -r lib/* /lib/
-  sudo cp -r usr/* /usr/
-  sudo mkdir -p /var/log/fpc
-  echo "libfprint-2-2 hold" | sudo dpkg --set-selections
-  sudo chmod 755 /usr/lib/x86_64-linux-gnu/libfprint-2.so.2.0.0
-fi
+sudo dnf -y install libfprint fprintd fprintd-pam
+sudo cp -r lib/* /usr/lib/
+sudo cp usr/lib/x86_64-linux-gnu/* /usr/lib64/
+sudo chmod +x /usr/lib64/libfprint-2*
 ```
 
-**Cambios:**
+**Cambios respecto al original:**
 - Usa `dnf` en lugar de `apt`
-- Instala paquetes necesarios: libfprint, fprintd, fprintd-pam
-- Copia bibliotecas a las rutas correctas de Fedora
-- **Nota:** No se bloquea la versión de libfprint ya que el comando versionlock no funciona correctamente
+- Instala los paquetes necesarios: `libfprint`, `fprintd`, `fprintd-pam`
+- Copia las bibliotecas a las rutas de Fedora (`/usr/lib/`, `/usr/lib64/`)
+- Lógica de detección de OS eliminada; el script es ahora exclusivo para Fedora
+- La versión de libfprint **no** se bloquea (no se usa versionlock)
 
 ### Solución de Problemas
 
@@ -315,18 +364,27 @@ Si experimentas problemas después de actualizar el sistema, es posible que nece
 
 ### Desinstalar
 
-Si necesitas desinstalar el driver:
+#### Método 1 — Scripts
+
+Si instalaste usando los scripts, elimina las bibliotecas manualmente y reinstala el `libfprint` original del repositorio:
 
 ```bash
 # Eliminar bibliotecas instaladas
-sudo rm /usr/lib64/libfpcbep.so
-sudo rm /usr/lib64/libfprint-2.so.2*
-
-# Desbloquear libfprint
-sudo dnf versionlock delete libfprint
+sudo rm -f /usr/lib64/libfpcbep.so
+sudo rm -f /usr/lib64/libfprint-2.so.2 /usr/lib64/libfprint-2.so.2.0.0
+sudo rm -f /usr/lib/udev/rules.d/60-libfprint-2-device-fpc.rules
 
 # Reinstalar libfprint original
 sudo dnf reinstall libfprint
+```
+
+#### Método 2 — Paquete RPM
+
+Si instalaste usando `dnf install` con el RPM de Lenovo, elimina el paquete y reinstala el original:
+
+```bash
+sudo dnf remove libfprint
+sudo dnf install libfprint
 ```
 
 ### Créditos
