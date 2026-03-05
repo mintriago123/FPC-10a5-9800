@@ -3,6 +3,33 @@
 Todos los cambios notables en este proyecto serán documentados en este archivo.
 All notable changes to this project will be documented in this file.
 
+## [2.3.0] - 2026-03-05
+
+### ✨ Agregado / Added
+- **Perfil para NixOS con overlay de `libfprint`/`fprintd` / NixOS profile with `libfprint`/`fprintd` overlay:**
+  - Nuevo perfil en `profiles/fprint-fpcmoh/default.nix`
+  - New profile at `profiles/fprint-fpcmoh/default.nix`
+  - Incluye configuración para `services.fprintd.enable`, `services.udev.packages`, `hardware.enableRedistributableFirmware` y `hardware.enableAllFirmware`
+  - Includes configuration for `services.fprintd.enable`, `services.udev.packages`, `hardware.enableRedistributableFirmware`, and `hardware.enableAllFirmware`
+
+- **Patch local para `fpcmoh` en perfil NixOS / Local `fpcmoh` patch in NixOS profile:**
+  - Copia local añadida en `profiles/fprint-fpcmoh/fpcmoh.patch`
+  - Local copy added at `profiles/fprint-fpcmoh/fpcmoh.patch`
+
+### 🔄 Cambiado / Changed
+- **README actualizado con sección NixOS (EN/ES) / README updated with NixOS section (EN/ES):**
+  - Instrucción de importación: `imports = [ ./profiles/fprint-fpcmoh ];`
+  - Import instruction: `imports = [ ./profiles/fprint-fpcmoh ];`
+  - Estructura del repositorio y tabla de distribuciones soportadas actualizadas para incluir NixOS
+  - Repository structure and supported distributions table updated to include NixOS
+  - Referencia al patch upstream (MR !396) y a la copia local del repositorio
+  - Reference to upstream patch (MR !396) and repository local copy
+
+### 👥 Créditos / Credits
+- **Referencia adicional para NixOS / Additional NixOS reference:**
+  - Agregado crédito a `nixpkgs` issue comment: https://github.com/NixOS/nixpkgs/issues/324624#issuecomment-2692141032
+  - Added credit to `nixpkgs` issue comment: https://github.com/NixOS/nixpkgs/issues/324624#issuecomment-2692141032
+
 ## [2.2.0] - 2026-02-28
 
 ### ✨ Agregado / Added
