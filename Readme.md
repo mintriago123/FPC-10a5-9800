@@ -130,6 +130,22 @@ yay -S libfprint-fpcmoh-git fprintd
 paru -S libfprint-fpcmoh-git fprintd
 ```
 
+#### 🟩 NixOS
+
+Use the profile included in this repository:
+
+```bash
+imports = [ ./profiles/fprint-fpcmoh ];
+```
+
+The two required files are in the same folder:
+- `profiles/fprint-fpcmoh/default.nix`
+- `profiles/fprint-fpcmoh/fpcmoh.patch`
+
+Patch reference:
+- Upstream MR: [libfprint MR !396](https://gitlab.freedesktop.org/libfprint/libfprint/-/merge_requests/396)
+- Local copy in this repo: [`profiles/fprint-fpcmoh/fpcmoh.patch`](profiles/fprint-fpcmoh/fpcmoh.patch)
+
 ### 📁 Repository Structure
 
 ```
@@ -144,6 +160,8 @@ FPC-10a5-9800/
 ├── drivers/                       # 🔧 Drivers and binary files
 │   ├── Fedora Atomic/            # RPM package for Fedora Atomic distros
 │   │   └── libfprint-1.94.10-1.lenovo.fc42.x86_64.rpm
+│   ├── Nixos/
+│   │   └── fpcmoh.patch
 │   ├── original/                 # Unmodified drivers
 │   │   └── r1slm02w.zip          # Original Lenovo driver (for Deepin/manual Ubuntu)
 │   └── modified/                 # Modified drivers
@@ -151,6 +169,10 @@ FPC-10a5-9800/
 │           └── r1slm02w/
 │               ├── FPC_driver_linux_27.26.23.39/
 │               └── FPC_driver_linux_libfprint/
+├── profiles/
+│   └── fprint-fpcmoh/
+│       ├── default.nix
+│       └── fpcmoh.patch
 ├── CHANGELOG.md                   # Change log
 ├── CONTRIBUTING.md                # Contributing guide
 ├── LICENSE                        # MIT License
@@ -220,6 +242,7 @@ This repository is licensed under the [MIT License](LICENSE).
 | **Deepin 25** | Lenovo scripts (immutable system) | ✅ Tested | [View guide](docs/INSTALL_DEEPIN.md) |
 | **Arch Linux** | AUR (libfprint-fpcmoh-git) | ✅ Tested | [View guide](docs/INSTALL_ARCH.md) |
 | **Manjaro/EndeavourOS** | AUR (libfprint-fpcmoh-git) | ✅ Compatible | [View guide](docs/INSTALL_ARCH.md) |
+| **NixOS** | Overlay profile (`profiles/fprint-fpcmoh`) | ✅ Community | [Profile](profiles/fprint-fpcmoh/default.nix) |
 
 ### 💡 Which method should I use?
 
@@ -259,6 +282,11 @@ This repository is licensed under the [MIT License](LICENSE).
 - [AUR package libfprint-fpcmoh-git](https://aur.archlinux.org/packages/libfprint-fpcmoh-git)
 - [Arch Linux wiki on fprint](https://wiki.archlinux.org/title/Fprint)
 
+**NixOS / Patch reference:**
+- [libfprint MR !396 (upstream patch source)](https://gitlab.freedesktop.org/libfprint/libfprint/-/merge_requests/396)
+- [Local patch copy in this repository](profiles/fprint-fpcmoh/fpcmoh.patch)
+- [NixOS reference / credits](https://github.com/NixOS/nixpkgs/issues/324624#issuecomment-2692141032)
+
 ### 👥 Credits
 
 **Fedora & Derivatives Scripts:**
@@ -276,6 +304,7 @@ This repository is licensed under the [MIT License](LICENSE).
 **Repository:**
 - **Organization and additional documentation:** Contributors of this repository
 - **Ubuntu and Arch guides:** Added to facilitate multi-distro installation
+- **NixOS reference/credits:** [nixpkgs issue comment](https://github.com/NixOS/nixpkgs/issues/324624#issuecomment-2692141032)
 
 ---
 
@@ -398,6 +427,22 @@ yay -S libfprint-fpcmoh-git fprintd
 paru -S libfprint-fpcmoh-git fprintd
 ```
 
+#### 🟩 NixOS
+
+Usa el perfil incluido en este repositorio:
+
+```bash
+imports = [ ./profiles/fprint-fpcmoh ];
+```
+
+Los dos archivos necesarios están en la misma carpeta:
+- `profiles/fprint-fpcmoh/default.nix`
+- `profiles/fprint-fpcmoh/fpcmoh.patch`
+
+Referencia del patch:
+- MR upstream: [libfprint MR !396](https://gitlab.freedesktop.org/libfprint/libfprint/-/merge_requests/396)
+- Copia local en este repo: [`profiles/fprint-fpcmoh/fpcmoh.patch`](profiles/fprint-fpcmoh/fpcmoh.patch)
+
 ### 📁 Estructura del Repositorio
 
 ```
@@ -412,6 +457,8 @@ FPC-10a5-9800/
 ├── drivers/                       # 🔧 Drivers y archivos binarios
 │   ├── Fedora Atomic/            # Paquete RPM para distros Fedora Atomic
 │   │   └── libfprint-1.94.10-1.lenovo.fc42.x86_64.rpm
+│   ├── Nixos/
+│   │   └── fpcmoh.patch
 │   ├── original/                 # Drivers sin modificar
 │   │   └── r1slm02w.zip          # Driver original de Lenovo (para Deepin/Ubuntu manual)
 │   └── modified/                 # Drivers modificados
@@ -419,6 +466,10 @@ FPC-10a5-9800/
 │           └── r1slm02w/
 │               ├── FPC_driver_linux_27.26.23.39/
 │               └── FPC_driver_linux_libfprint/
+├── profiles/
+│   └── fprint-fpcmoh/
+│       ├── default.nix
+│       └── fpcmoh.patch
 ├── CHANGELOG.md                   # Registro de cambios
 ├── CONTRIBUTING.md                # Guía de contribución
 ├── LICENSE                        # Licencia MIT
@@ -488,6 +539,7 @@ Este repositorio está licenciado bajo la [Licencia MIT](LICENSE).
 | **Deepin 25** | Scripts de Lenovo (sistema inmutable) | ✅ Probado | [Ver guía](docs/INSTALL_DEEPIN.md) |
 | **Arch Linux** | AUR (libfprint-fpcmoh-git) | ✅ Probado | [Ver guía](docs/INSTALL_ARCH.md) |
 | **Manjaro/EndeavourOS** | AUR (libfprint-fpcmoh-git) | ✅ Compatible | [Ver guía](docs/INSTALL_ARCH.md) |
+| **NixOS** | Perfil overlay (`profiles/fprint-fpcmoh`) | ✅ Comunidad | [Perfil](profiles/fprint-fpcmoh/default.nix) |
 
 ### 💡 ¿Qué método debo usar?
 
@@ -526,6 +578,11 @@ Este repositorio está licenciado bajo la [Licencia MIT](LICENSE).
 - [Paquete AUR libfprint-fpcmoh-git](https://aur.archlinux.org/packages/libfprint-fpcmoh-git)
 - [Wiki de Arch Linux sobre fprint](https://wiki.archlinux.org/title/Fprint)
 
+**NixOS / Referencia del patch:**
+- [libfprint MR !396 (fuente del patch upstream)](https://gitlab.freedesktop.org/libfprint/libfprint/-/merge_requests/396)
+- [Copia local del patch en este repositorio](profiles/fprint-fpcmoh/fpcmoh.patch)
+- [Referencia NixOS / créditos](https://github.com/NixOS/nixpkgs/issues/324624#issuecomment-2692141032)
+
 ### 👥 Créditos
 
 **Scripts para Fedora y derivadas:**
@@ -543,6 +600,7 @@ Este repositorio está licenciado bajo la [Licencia MIT](LICENSE).
 **Repositorio:**
 - **Organización y documentación adicional:** Contribuidores de este repositorio
 - **Guías para Ubuntu y Arch:** Agregadas para facilitar la instalación multi-distro
+- **Referencia/créditos NixOS:** [comentario en issue de nixpkgs](https://github.com/NixOS/nixpkgs/issues/324624#issuecomment-2692141032)
 
 ---
 
